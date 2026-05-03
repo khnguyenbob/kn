@@ -1,1 +1,1008 @@
-# kn
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>🌸 K-Strawberry Korean – Học tiếng Hàn pastel cùng GenZ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fff0f5;
+      --surface: #ffffff;
+      --surface2: #ffe4ec;
+      --text: #4a2040;
+      --text2: #8b5e7c;
+      --border: #fccdd3;
+      --primary: #e84393;
+      --primary-glow: #fd79a8;
+      --accent: #f06292;
+      --teal: #0d9488;
+      --subject: #00cec9;
+      --verb: #f78fb3;
+      --object: #fdcb6e;
+      --adjective: #ffdd59;
+      --adverb: #55efc4;
+      --noun: #dda0dd;
+      --particle: #b2bec3;
+      --card-shadow: 0 8px 28px rgba(232, 67, 147, 0.12);
+      --glass-bg: rgba(255, 255, 255, 0.6);
+      --glass-border: rgba(255, 192, 203, 0.6);
+      --streak-glow: #fbc531;
+    }
+    .dark-mode {
+      --bg: #2d1b2e;
+      --surface: #402b3c;
+      --surface2: #53334a;
+      --text: #f5e3f0;
+      --text2: #d3a5c1;
+      --border: #6b4a62;
+      --primary: #f78fb3;
+      --primary-glow: #f5a9cb;
+      --card-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      --glass-bg: rgba(64, 43, 60, 0.7);
+      --glass-border: rgba(247, 143, 179, 0.35);
+      --streak-glow: #f6e58d;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: all 0.4s ease;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed; top:-20%; left:-15%;
+      width:65vw; height:65vw;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      opacity:0.15; animation: blobFloat 20s infinite alternate;
+      border-radius:50%; pointer-events:none; z-index:0;
+    }
+    body::after {
+      content: '';
+      position: fixed; bottom:-25%; right:-12%;
+      width:60vw; height:60vw;
+      background: radial-gradient(circle, #f8a5c2 0%, transparent 70%);
+      opacity:0.15; animation: blobFloat 18s 3s infinite alternate-reverse;
+      border-radius:50%; pointer-events:none; z-index:0;
+    }
+    @keyframes blobFloat {
+      0%{transform:translate(0,0) scale(1);}
+      100%{transform:translate(3%,-4%) scale(1.06);}
+    }
+    .app-container {
+      position:relative; z-index:1; max-width:920px; margin:0 auto; padding:18px 22px 42px;
+    }
+    header {
+      display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
+      padding:14px 22px; background:var(--glass-bg); backdrop-filter:blur(24px);
+      -webkit-backdrop-filter:blur(24px); border:1px solid var(--glass-border);
+      border-radius:28px; margin-bottom:20px; box-shadow:var(--card-shadow);
+    }
+    .logo { display:flex; align-items:center; gap:8px; font-weight:800; font-size:1.5rem; }
+    .logo .icon { font-size:2rem; animation: bounceIcon 2s infinite; }
+    @keyframes bounceIcon { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
+    .streak-badge {
+      display:flex; align-items:center; gap:6px;
+      background:linear-gradient(135deg, #f8a5c2, #e84393);
+      color:#fff; padding:8px 18px; border-radius:40px; font-weight:700;
+      box-shadow:0 0 18px var(--primary-glow); cursor:pointer; transition:0.3s;
+    }
+    .streak-badge:hover { transform:scale(1.04); }
+    .header-actions { display:flex; gap:8px; }
+    .btn-icon {
+      width:44px; height:44px; border-radius:50%; border:2px solid var(--border);
+      background:var(--surface); cursor:pointer; font-size:1.2rem;
+      display:flex; align-items:center; justify-content:center;
+      transition:0.3s; color:var(--text);
+    }
+    .btn-icon:hover { background:var(--primary); color:#fff; border-color:var(--primary); box-shadow:0 0 18px var(--primary-glow); }
+    .tab-nav {
+      display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px;
+      background:var(--glass-bg); backdrop-filter:blur(20px);
+      border-radius:22px; padding:6px; border:1px solid var(--glass-border);
+    }
+    .tab-btn {
+      flex:1; min-width:85px; padding:12px 12px; border:none; border-radius:18px;
+      cursor:pointer; font-weight:600; font-size:0.85rem; background:transparent;
+      color:var(--text2); transition:0.3s; font-family:inherit; white-space:nowrap;
+    }
+    .tab-btn.active { background:var(--primary); color:#fff; box-shadow:0 6px 18px var(--primary-glow); }
+    .tab-panel { display:none; animation: fadeIn 0.35s; }
+    .tab-panel.active { display:block; }
+    @keyframes fadeIn { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+    .card {
+      background:var(--glass-bg); backdrop-filter:blur(24px);
+      border:1px solid var(--glass-border); border-radius:28px;
+      padding:22px; margin-bottom:18px; box-shadow:var(--card-shadow);
+    }
+    .topic-selector { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+    .topic-chip {
+      padding:8px 16px; border-radius:40px; border:2px solid var(--border);
+      background:var(--surface); cursor:pointer; font-weight:600; font-size:0.8rem;
+      transition:0.3s; color:var(--text2); white-space:nowrap;
+    }
+    .topic-chip.active, .topic-chip:hover { background:var(--primary); color:#fff; border-color:var(--primary); }
+    .flashcard-container { perspective:1200px; margin:14px 0; }
+    .flashcard {
+      width:100%; max-width:480px; margin:0 auto; height:240px;
+      position:relative; cursor:pointer; transform-style:preserve-3d;
+      transition:transform 0.6s;
+    }
+    .flashcard.flipped { transform:rotateY(180deg); }
+    .flashcard-face {
+      position:absolute; inset:0; border-radius:26px; display:flex;
+      flex-direction:column; align-items:center; justify-content:center;
+      backface-visibility:hidden; padding:20px; font-weight:700;
+      border:2px solid var(--glass-border);
+    }
+    .flashcard-front {
+      background:linear-gradient(135deg, #e84393, #f78fb3);
+      color:#fff; font-size:2.8rem; letter-spacing:2px;
+      font-family:'Noto Sans KR', sans-serif;
+    }
+    .flashcard-back { background:var(--surface); color:var(--text); transform:rotateY(180deg); }
+    .flashcard-controls { display:flex; gap:10px; justify-content:center; margin-top:12px; }
+    .flashcard-controls button {
+      padding:10px 18px; border-radius:40px; border:2px solid var(--border);
+      background:var(--surface); cursor:pointer; font-weight:600; transition:0.3s;
+      color:var(--text);
+    }
+    .flashcard-controls button:hover { background:var(--primary); color:#fff; border-color:var(--primary); }
+    .sentence-display {
+      font-size:1.4rem; font-family:'Noto Sans KR', sans-serif;
+      padding:16px; background:var(--surface2); border-radius:18px;
+      margin:10px 0; text-align:center; border:1px dashed var(--border);
+    }
+    /* TOKEN MÀU SIÊU NỔI BẬT ĐÃ FIX */
+    .token {
+      padding: 3px 8px;
+      border-radius: 8px;
+      display: inline-block;
+      font-weight: 700;
+      margin: 0 3px;
+      transition: 0.2s;
+      border: 2px solid transparent;
+    }
+    .token-subject {
+      background: #00cec9;
+      color: #ffffff;
+      border-color: #009c98;
+    }
+    .token-verb {
+      background: #f78fb3;
+      color: #ffffff;
+      border-color: #e84393;
+    }
+    .token-object {
+      background: #fdcb6e;
+      color: #4a2c00;
+      border-color: #e1a800;
+    }
+    .token-adjective {
+      background: #ffdd59;
+      color: #4a3b00;
+      border-color: #d4b000;
+    }
+    .token-adverb {
+      background: #55efc4;
+      color: #004d2e;
+      border-color: #2ecc71;
+    }
+    .token-noun {
+      background: #dda0dd;
+      color: #4a144a;
+      border-color: #b47bb4;
+    }
+    .token-particle {
+      background: #b2bec3;
+      color: #2d3436;
+      border-color: #636e72;
+    }
+    .dark-mode .token-subject {
+      background: #00cec9;
+      color: #fff;
+      border-color: #00e5e5;
+    }
+    .dark-mode .token-verb {
+      background: #f78fb3;
+      color: #fff;
+      border-color: #ff9cc5;
+    }
+    .dark-mode .token-object {
+      background: #fdcb6e;
+      color: #3a2600;
+      border-color: #f9b800;
+    }
+    .dark-mode .token-adjective {
+      background: #ffdd59;
+      color: #3a2e00;
+      border-color: #f0c800;
+    }
+    .dark-mode .token-adverb {
+      background: #55efc4;
+      color: #003d24;
+      border-color: #3de0a8;
+    }
+    .dark-mode .token-noun {
+      background: #dda0dd;
+      color: #3d0f3d;
+      border-color: #c591c5;
+    }
+    .dark-mode .token-particle {
+      background: #848d93;
+      color: #ffffff;
+      border-color: #636e72;
+    }
+    .chat-area { max-height:460px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; }
+    .chat-bubble {
+      max-width:85%; padding:14px 18px; border-radius:20px; font-weight:500;
+      animation: popIn 0.25s; font-size:0.9rem;
+    }
+    @keyframes popIn { from{opacity:0; transform:scale(0.9);} to{opacity:1; transform:scale(1);} }
+    .chat-user { align-self:flex-end; background:var(--primary); color:#fff; }
+    .chat-bot { align-self:flex-start; background:var(--surface2); border:1px solid var(--border); }
+    .chat-input-row { display:flex; gap:8px; margin-top:12px; }
+    .chat-input-row input {
+      flex:1; padding:14px 18px; border-radius:40px; border:2px solid var(--border);
+      background:var(--surface); font-family:inherit; font-size:1rem; outline:none;
+    }
+    .chat-input-row button {
+      padding:14px 22px; border-radius:40px; background:var(--primary);
+      color:#fff; font-weight:700; border:none; cursor:pointer; transition:0.3s;
+    }
+    .quiz-option {
+      display:block; width:100%; padding:14px; margin:6px 0; border-radius:16px;
+      border:2px solid var(--border); background:var(--surface); cursor:pointer;
+      font-weight:600; text-align:left; transition:0.25s; color:var(--text);
+    }
+    .quiz-option.correct { background:#d4edc9 !important; border-color:#2ecc71 !important; }
+    .quiz-option.wrong { background:#f8d7da !important; border-color:#e74c3c !important; }
+    #confetti-canvas { position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:999; }
+    @media (max-width:600px) {
+      .flashcard { height:180px; }
+      .flashcard-front { font-size:2rem; }
+    }
+  </style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<div class="app-container">
+  <header>
+    <div class="logo"><span class="icon">🌸</span> K‑Strawberry</div>
+    <div class="streak-badge" id="streakBadge">🍓 <span id="streakCount">0</span> ngày</div>
+    <div class="header-actions">
+      <button class="btn-icon" id="darkToggle">🌙</button>
+      <button class="btn-icon" id="soundToggle">🔊</button>
+    </div>
+  </header>
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="vocab">📚 Từ vựng</button>
+    <button class="tab-btn" data-tab="grammar">🎀 Ngữ pháp</button>
+    <button class="tab-btn" data-tab="bot">🤖 Bot sửa câu</button>
+    <button class="tab-btn" data-tab="game">🍬 Mini Game</button>
+  </nav>
+  <div class="tab-panel active" id="tab-vocab">
+    <div class="card">
+      <h3>📚 Flashcard từ vựng</h3>
+      <div class="topic-selector" id="topicSelector"></div>
+      <div class="flashcard-container">
+        <div class="flashcard" id="flashcard">
+          <div class="flashcard-face flashcard-front" id="fcFront">한국어</div>
+          <div class="flashcard-face flashcard-back" id="fcBack">
+            <span class="romaja"></span>
+            <span class="meaning"></span>
+          </div>
+        </div>
+      </div>
+      <div class="flashcard-controls">
+        <button id="btnPrev">⬅️</button>
+        <span id="cardProgress">1/8</span>
+        <button id="btnNext">➡️</button>
+        <button id="btnFlip">🔄 Lật</button>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" id="tab-grammar">
+    <div class="card">
+      <h3>🎀 Ngữ pháp trực quan</h3>
+      <div class="topic-selector" id="grammarSelector"></div>
+      <div id="grammarExplanation" style="margin:8px 0; color:var(--text2)"></div>
+      <div class="sentence-display" id="grammarSentence"></div>
+      <div class="legend" id="grammarLegend" style="display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;"></div>
+      <button id="btnMoreGrammar" style="margin-top:12px; padding:10px 18px; border-radius:40px; border:2px solid var(--border); background:var(--surface); cursor:pointer;">🔀 Xem ví dụ khác</button>
+    </div>
+  </div>
+  <div class="tab-panel" id="tab-bot">
+    <div class="card">
+      <h3>🤖 Bot sửa ngữ pháp</h3>
+      <div class="chat-area" id="chatArea">
+        <div class="chat-bubble chat-bot">👋 안녕! Gõ câu tiếng Hàn, tớ check lỗi giúp cậu nha~</div>
+      </div>
+      <div class="chat-input-row">
+        <input id="botInput" placeholder="Nhập câu tiếng Hàn..." onkeydown="if(event.key==='Enter')sendToBot()">
+        <button onclick="sendToBot()">Gửi 🚀</button>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" id="tab-game">
+    <div class="card">
+      <h3>🍬 Mini Game – Đoán nghĩa</h3>
+      <div style="font-size:2.5rem; text-align:center; padding:20px;" id="quizWord">사랑</div>
+      <div id="quizOptions"></div>
+      <p id="quizFeedback" style="text-align:center; font-weight:600;"></p>
+      <div style="text-align:center; margin-top:10px;">
+        🏆 <span id="quizScore">0</span> điểm
+        <button id="btnNextQuiz" style="margin-left:10px; padding:8px 16px; border-radius:40px; border:2px solid var(--border); background:var(--surface); cursor:pointer;">Câu tiếp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const state = {
+      darkMode: localStorage.getItem('darkMode') === 'true',
+      soundOn: localStorage.getItem('soundOn') !== 'false',
+      streak: parseInt(localStorage.getItem('streak') || '0'),
+      lastStudyDate: localStorage.getItem('lastStudyDate') || '',
+      currentTopic: 'selfIntro',
+      currentCardIndex: 0,
+      currentGrammarIndex: 0,
+      quizScore: 0,
+      quizAnswered: false
+    };
+
+    // 35 topics vocabulary
+    const vocabularyTopics = {
+      selfIntro: { name:'🙋 자기소개', words:[
+        {kr:'이름',rom:'ireum',vi:'Tên'},{kr:'나이',rom:'nai',vi:'Tuổi'},{kr:'생일',rom:'saengil',vi:'Sinh nhật'},
+        {kr:'국적',rom:'gukjeok',vi:'Quốc tịch'},{kr:'고향',rom:'gohyang',vi:'Quê quán'},{kr:'학생',rom:'haksaeng',vi:'Học sinh'},
+        {kr:'회사원',rom:'hoesawon',vi:'Nhân viên'},{kr:'선생님',rom:'seonsaengnim',vi:'Giáo viên'},{kr:'의사',rom:'uisa',vi:'Bác sĩ'},
+        {kr:'독서',rom:'dokseo',vi:'Đọc sách'},{kr:'운동',rom:'undong',vi:'Tập thể dục'},{kr:'여행',rom:'yeohaeng',vi:'Du lịch'},
+        {kr:'사진',rom:'sajin',vi:'Nhiếp ảnh'}
+      ]},
+      dailyLife: { name:'🌞 일상생활', words:[
+        {kr:'일어나다',rom:'ireonada',vi:'Thức dậy'},{kr:'세수하다',rom:'sesuhada',vi:'Rửa mặt'},{kr:'아침 식사',rom:'achim siksa',vi:'Bữa sáng'},
+        {kr:'산책하다',rom:'sanchaekhada',vi:'Đi dạo'},{kr:'출근하다',rom:'chulgeunhada',vi:'Đi làm'},{kr:'점심',rom:'jeomsim',vi:'Bữa trưa'},
+        {kr:'공부하다',rom:'gongbuhada',vi:'Học bài'},{kr:'퇴근하다',rom:'toegeunhada',vi:'Tan làm'},{kr:'저녁 식사',rom:'jeonyeok siksa',vi:'Bữa tối'},
+        {kr:'샤워하다',rom:'syawohada',vi:'Tắm'},{kr:'잠자다',rom:'jamjada',vi:'Ngủ'}
+      ]},
+      family: { name:'👨‍👩‍👧‍👦 가족', words:[
+        {kr:'아버지',rom:'abeoji',vi:'Bố'},{kr:'어머니',rom:'eomeoni',vi:'Mẹ'},{kr:'형',rom:'hyeong',vi:'Anh (nam)'},
+        {kr:'누나',rom:'nuna',vi:'Chị (nam)'},{kr:'동생',rom:'dongsaeng',vi:'Em'},{kr:'할아버지',rom:'harabeoji',vi:'Ông'},
+        {kr:'할머니',rom:'halmeoni',vi:'Bà'},{kr:'삼촌',rom:'samchon',vi:'Chú/Cậu'},{kr:'이모',rom:'imo',vi:'Dì'},
+        {kr:'사촌',rom:'sachon',vi:'Anh chị em họ'}
+      ]},
+      appearance: { name:'💁 외모', words:[
+        {kr:'얼굴',rom:'eolgul',vi:'Khuôn mặt'},{kr:'눈',rom:'nun',vi:'Mắt'},{kr:'코',rom:'ko',vi:'Mũi'},
+        {kr:'입',rom:'ip',vi:'Miệng'},{kr:'키',rom:'ki',vi:'Chiều cao'},{kr:'몸무게',rom:'momuge',vi:'Cân nặng'},
+        {kr:'날씬하다',rom:'nalssinhada',vi:'Thon thả'},{kr:'뚱뚱하다',rom:'ttungttunghada',vi:'Mập mạp'},
+        {kr:'친절하다',rom:'chinjeolhada',vi:'Tử tế'},{kr:'날카롭다',rom:'nalkaropda',vi:'Sắc sảo'},{kr:'부드럽다',rom:'budeureopda',vi:'Dịu dàng'}
+      ]},
+      hobby: { name:'🎨 취미', words:[
+        {kr:'독서',rom:'dokseo',vi:'Đọc sách'},{kr:'그림',rom:'geurim',vi:'Vẽ'},{kr:'요리',rom:'yori',vi:'Nấu ăn'},
+        {kr:'등산',rom:'deungsan',vi:'Leo núi'},{kr:'자전거',rom:'jajeongeo',vi:'Xe đạp'},{kr:'수영',rom:'suyeong',vi:'Bơi lội'},
+        {kr:'영화',rom:'yeonghwa',vi:'Xem phim'},{kr:'음악',rom:'eumak',vi:'Nghe nhạc'},{kr:'게임',rom:'geim',vi:'Chơi game'},
+        {kr:'춤',rom:'chum',vi:'Nhảy múa'}
+      ]},
+      movieMusic: { name:'🎬 영화&음악', words:[
+        {kr:'액션',rom:'aeksyeon',vi:'Hành động'},{kr:'로맨스',rom:'romaenseu',vi:'Lãng mạn'},{kr:'공포',rom:'gongpo',vi:'Kinh dị'},
+        {kr:'코미디',rom:'komidi',vi:'Hài'},{kr:'케이팝',rom:'keipap',vi:'K-pop'},{kr:'클래식',rom:'keullaesik',vi:'Nhạc cổ điển'},
+        {kr:'발라드',rom:'balladeu',vi:'Ballad'},{kr:'기타',rom:'gita',vi:'Guitar'},{kr:'피아노',rom:'piano',vi:'Piano'},
+        {kr:'바이올린',rom:'baiollin',vi:'Violin'}
+      ]},
+      food: { name:'🍜 음식', words:[
+        {kr:'김치',rom:'gimchi',vi:'Kim chi'},{kr:'불고기',rom:'bulgogi',vi:'Bulgogi'},{kr:'비빔밥',rom:'bibimbap',vi:'Bibimbap'},
+        {kr:'떡볶이',rom:'tteokbokki',vi:'Bánh gạo cay'},{kr:'삼겹살',rom:'samgyeopsal',vi:'Thịt ba chỉ'},{kr:'커피',rom:'keopi',vi:'Cà phê'},
+        {kr:'녹차',rom:'nokcha',vi:'Trà xanh'},{kr:'주스',rom:'juseu',vi:'Nước ép'},{kr:'아이스크림',rom:'aiseukeurim',vi:'Kem'},
+        {kr:'케이크',rom:'keikeu',vi:'Bánh ngọt'}
+      ]},
+      health: { name:'🏥 건강', words:[
+        {kr:'감기',rom:'gamgi',vi:'Cảm cúm'},{kr:'두통',rom:'dutong',vi:'Đau đầu'},{kr:'복통',rom:'boktong',vi:'Đau bụng'},
+        {kr:'치통',rom:'chitong',vi:'Đau răng'},{kr:'병원',rom:'byeongwon',vi:'Bệnh viện'},{kr:'약',rom:'yak',vi:'Thuốc'},
+        {kr:'의사',rom:'uisa',vi:'Bác sĩ'},{kr:'운동',rom:'undong',vi:'Tập thể dục'},{kr:'수면',rom:'sumyeon',vi:'Giấc ngủ'},
+        {kr:'건강식',rom:'geongangsik',vi:'Thực phẩm lành mạnh'}
+      ]},
+      sports: { name:'⚽ 운동', words:[
+        {kr:'축구',rom:'chukgu',vi:'Bóng đá'},{kr:'농구',rom:'nonggu',vi:'Bóng rổ'},{kr:'배구',rom:'baegu',vi:'Bóng chuyền'},
+        {kr:'야구',rom:'yagu',vi:'Bóng chày'},{kr:'수영',rom:'suyeong',vi:'Bơi lội'},{kr:'요가',rom:'yoga',vi:'Yoga'},
+        {kr:'조깅',rom:'joging',vi:'Chạy bộ'},{kr:'헬스',rom:'helseu',vi:'Gym'},{kr:'올림픽',rom:'ollimpik',vi:'Olympic'},
+        {kr:'월드컵',rom:'woldeukeop',vi:'World Cup'}
+      ]},
+      travel: { name:'✈️ 여행', words:[
+        {kr:'비행기',rom:'bihaenggi',vi:'Máy bay'},{kr:'기차',rom:'gicha',vi:'Tàu hỏa'},{kr:'버스',rom:'beoseu',vi:'Xe buýt'},
+        {kr:'배',rom:'bae',vi:'Tàu thủy'},{kr:'호텔',rom:'hotel',vi:'Khách sạn'},{kr:'민박',rom:'minbak',vi:'Homestay'},
+        {kr:'게스트하우스',rom:'geseuteuhauseu',vi:'Guesthouse'},{kr:'지도',rom:'jido',vi:'Bản đồ'},
+        {kr:'기념품',rom:'ginyeompum',vi:'Quà lưu niệm'},{kr:'여권',rom:'yeogwon',vi:'Hộ chiếu'}
+      ]},
+      weather:{ name:'🌤️ 날씨', words:[
+        {kr:'봄',rom:'bom',vi:'Mùa xuân'},{kr:'여름',rom:'yeoreum',vi:'Mùa hè'},{kr:'가을',rom:'gaeul',vi:'Mùa thu'},
+        {kr:'겨울',rom:'gyeoul',vi:'Mùa đông'},{kr:'비',rom:'bi',vi:'Mưa'},{kr:'눈',rom:'nun',vi:'Tuyết'},
+        {kr:'바람',rom:'baram',vi:'Gió'},{kr:'맑다',rom:'makda',vi:'Trời quang'},{kr:'흐리다',rom:'heurida',vi:'Nhiều mây'},
+        {kr:'덥다',rom:'deopda',vi:'Nóng'},{kr:'춥다',rom:'chupda',vi:'Lạnh'}
+      ]},
+      transport:{ name:'🚌 교통', words:[
+        {kr:'버스',rom:'beoseu',vi:'Xe buýt'},{kr:'지하철',rom:'jihacheol',vi:'Tàu điện'},{kr:'택시',rom:'taeksi',vi:'Taxi'},
+        {kr:'자전거',rom:'jajeongeo',vi:'Xe đạp'},{kr:'신호등',rom:'sinhodeung',vi:'Đèn giao thông'},
+        {kr:'횡단보도',rom:'hoengdanbodo',vi:'Vạch sang đường'},{kr:'교통 체증',rom:'gyotong chejeung',vi:'Tắc đường'},
+        {kr:'운전면허',rom:'unjeon myeonheo',vi:'Bằng lái'},{kr:'주차',rom:'jucha',vi:'Đỗ xe'},{kr:'고속도로',rom:'gosokdoro',vi:'Cao tốc'}
+      ]},
+      school:{ name:'🏫 학교', words:[
+        {kr:'교실',rom:'gyosil',vi:'Phòng học'},{kr:'도서관',rom:'doseogwan',vi:'Thư viện'},{kr:'운동장',rom:'undongjang',vi:'Sân trường'},
+        {kr:'수학',rom:'suhak',vi:'Toán'},{kr:'영어',rom:'yeongeo',vi:'Tiếng Anh'},{kr:'역사',rom:'yeoksa',vi:'Lịch sử'},
+        {kr:'과학',rom:'gwahak',vi:'Khoa học'},{kr:'시험',rom:'siheom',vi:'Kỳ thi'},{kr:'동아리',rom:'dongari',vi:'Câu lạc bộ'},
+        {kr:'숙제',rom:'sukje',vi:'Bài tập'}
+      ]},
+      job:{ name:'💼 직업', words:[
+        {kr:'변호사',rom:'byeonhosa',vi:'Luật sư'},{kr:'회계사',rom:'hoegyesa',vi:'Kế toán'},{kr:'프로그래머',rom:'peurogeuraemeo',vi:'Lập trình viên'},
+        {kr:'요리사',rom:'yorisa',vi:'Đầu bếp'},{kr:'경찰',rom:'gyeongchal',vi:'Cảnh sát'},{kr:'소방관',rom:'sobanggwan',vi:'Lính cứu hỏa'},
+        {kr:'가수',rom:'gasu',vi:'Ca sĩ'},{kr:'배우',rom:'baeu',vi:'Diễn viên'},{kr:'기자',rom:'gija',vi:'Nhà báo'},
+        {kr:'디자이너',rom:'dijaineo',vi:'Nhà thiết kế'}
+      ]},
+      personality:{ name:'😊 성격', words:[
+        {kr:'친절하다',rom:'chinjeolhada',vi:'Tử tế'},{kr:'성실하다',rom:'seongsilhada',vi:'Chăm chỉ'},
+        {kr:'외향적이다',rom:'oehyangjeogida',vi:'Hướng ngoại'},{kr:'내성적이다',rom:'naeseongjeogida',vi:'Hướng nội'},
+        {kr:'적극적이다',rom:'jeokgeukjeogida',vi:'Tích cực'},{kr:'게으르다',rom:'geeureuda',vi:'Lười biếng'},
+        {kr:'까다롭다',rom:'kkadaropda',vi:'Khó tính'},{kr:'소심하다',rom:'sosimhada',vi:'Nhút nhát'},
+        {kr:'낙천적이다',rom:'nakcheonjeogida',vi:'Lạc quan'},{kr:'민감하다',rom:'mingamhada',vi:'Nhạy cảm'}
+      ]},
+      emotion:{ name:'❤️ 감정', words:[
+        {kr:'행복하다',rom:'haengbokhada',vi:'Hạnh phúc'},{kr:'신나다',rom:'sinnada',vi:'Phấn khích'},
+        {kr:'기쁘다',rom:'gippeuda',vi:'Vui mừng'},{kr:'슬프다',rom:'seulpeuda',vi:'Buồn'},{kr:'외롭다',rom:'oeropda',vi:'Cô đơn'},
+        {kr:'우울하다',rom:'uulhada',vi:'U sầu'},{kr:'화나다',rom:'hwanada',vi:'Tức giận'},{kr:'짜증나다',rom:'jjajeungnada',vi:'Khó chịu'},
+        {kr:'무섭다',rom:'museopda',vi:'Sợ hãi'},{kr:'놀라다',rom:'nollada',vi:'Ngạc nhiên'}
+      ]},
+      house:{ name:'🏠 집', words:[
+        {kr:'침실',rom:'chimsil',vi:'Phòng ngủ'},{kr:'거실',rom:'geosil',vi:'Phòng khách'},{kr:'주방',rom:'jubang',vi:'Nhà bếp'},
+        {kr:'욕실',rom:'yoksil',vi:'Phòng tắm'},{kr:'현관',rom:'hyeongwan',vi:'Cửa ra vào'},{kr:'침대',rom:'chimdae',vi:'Giường'},
+        {kr:'책상',rom:'chaeksang',vi:'Bàn học'},{kr:'소파',rom:'sopa',vi:'Sofa'},{kr:'냉장고',rom:'naengjanggo',vi:'Tủ lạnh'},
+        {kr:'세탁기',rom:'setakgi',vi:'Máy giặt'}
+      ]},
+      clothes:{ name:'👕 옷', words:[
+        {kr:'셔츠',rom:'syeocheu',vi:'Áo sơ mi'},{kr:'바지',rom:'baji',vi:'Quần'},{kr:'치마',rom:'chima',vi:'Váy'},
+        {kr:'코트',rom:'koteu',vi:'Áo khoác'},{kr:'원피스',rom:'wonpiseu',vi:'Váy liền'},{kr:'모자',rom:'moja',vi:'Mũ'},
+        {kr:'목걸이',rom:'mokgeori',vi:'Vòng cổ'},{kr:'장갑',rom:'janggap',vi:'Găng tay'},{kr:'운동화',rom:'undonghwa',vi:'Giày thể thao'},
+        {kr:'구두',rom:'gudu',vi:'Giày da'}
+      ]},
+      shopping:{ name:'🛍️ 쇼핑', words:[
+        {kr:'백화점',rom:'baekhwajeom',vi:'TT thương mại'},{kr:'시장',rom:'sijang',vi:'Chợ'},{kr:'편의점',rom:'pyeonuijeom',vi:'Cửa hàng tiện lợi'},
+        {kr:'마트',rom:'mateu',vi:'Siêu thị'},{kr:'현금',rom:'hyeongeum',vi:'Tiền mặt'},{kr:'카드',rom:'kadeu',vi:'Thẻ'},
+        {kr:'할인',rom:'harin',vi:'Giảm giá'},{kr:'가방',rom:'gabang',vi:'Túi xách'},{kr:'시계',rom:'sigye',vi:'Đồng hồ'},
+        {kr:'영수증',rom:'yeongsujeung',vi:'Hóa đơn'}
+      ]},
+      electronics:{ name:'📱 전자기기', words:[
+        {kr:'스마트폰',rom:'seumateupon',vi:'Điện thoại'},{kr:'이어폰',rom:'ieopon',vi:'Tai nghe'},
+        {kr:'노트북',rom:'noteubuk',vi:'Laptop'},{kr:'태블릿',rom:'taebeullit',vi:'Máy tính bảng'},
+        {kr:'냉장고',rom:'naengjanggo',vi:'Tủ lạnh'},{kr:'세탁기',rom:'setakgi',vi:'Máy giặt'},
+        {kr:'청소기',rom:'cheongsogi',vi:'Máy hút bụi'},{kr:'충전하다',rom:'chungjeonhada',vi:'Sạc pin'},
+        {kr:'와이파이',rom:'waipai',vi:'Wifi'},{kr:'다운로드',rom:'daunrodeu',vi:'Tải xuống'}
+      ]},
+      society:{ name:'👥 사회', words:[
+        {kr:'친구',rom:'chingu',vi:'Bạn bè'},{kr:'동료',rom:'dongnyo',vi:'Đồng nghiệp'},{kr:'이웃',rom:'iut',vi:'Hàng xóm'},
+        {kr:'빈부격차',rom:'binbugyeokcha',vi:'Chênh lệch giàu nghèo'},{kr:'환경오염',rom:'hwangyeong oyeom',vi:'Ô nhiễm môi trường'},
+        {kr:'학교',rom:'hakgyo',vi:'Trường học'},{kr:'병원',rom:'byeongwon',vi:'Bệnh viện'},{kr:'은행',rom:'eunhaeng',vi:'Ngân hàng'},
+        {kr:'봉사',rom:'bongsa',vi:'Tình nguyện'},{kr:'법',rom:'beop',vi:'Luật pháp'}
+      ]},
+      environment:{ name:'🌍 환경', words:[
+        {kr:'대기오염',rom:'daegioyeom',vi:'Ô nhiễm không khí'},{kr:'수질오염',rom:'sujiloyeom',vi:'Ô nhiễm nước'},
+        {kr:'쓰레기',rom:'sseuregi',vi:'Rác'},{kr:'재활용',rom:'jaehwaryong',vi:'Tái chế'},
+        {kr:'에너지 절약',rom:'eneoji jeoryak',vi:'Tiết kiệm năng lượng'},{kr:'친환경',rom:'chinhwangyeong',vi:'Thân thiện môi trường'},
+        {kr:'숲',rom:'sup',vi:'Rừng'},{kr:'강',rom:'gang',vi:'Sông'},{kr:'바다',rom:'bada',vi:'Biển'},
+        {kr:'지구 온난화',rom:'jigu onnanhwa',vi:'Trái đất nóng lên'}
+      ]},
+      culture:{ name:'🎎 문화', words:[
+        {kr:'한복',rom:'hanbok',vi:'Hanbok'},{kr:'명절',rom:'myeongjeol',vi:'Ngày lễ'},{kr:'제사',rom:'jesa',vi:'Cúng tổ tiên'},
+        {kr:'케이팝',rom:'keipap',vi:'K-pop'},{kr:'드라마',rom:'deurama',vi:'Phim truyền hình'},
+        {kr:'웹툰',rom:'weptun',vi:'Webtoon'},{kr:'경복궁',rom:'Gyeongbokgung',vi:'Cung Gyeongbok'},
+        {kr:'박물관',rom:'bangmulgwan',vi:'Bảo tàng'},{kr:'전통',rom:'jeontong',vi:'Truyền thống'},{kr:'축제',rom:'chukje',vi:'Lễ hội'}
+      ]},
+      economy:{ name:'💰 경제', words:[
+        {kr:'은행',rom:'eunhaeng',vi:'Ngân hàng'},{kr:'주식',rom:'jusik',vi:'Cổ phiếu'},{kr:'예금',rom:'yegeum',vi:'Tiền gửi'},
+        {kr:'물가',rom:'mulga',vi:'Giá cả'},{kr:'소비자',rom:'sobija',vi:'Người tiêu dùng'},
+        {kr:'장바구니',rom:'jangbaguni',vi:'Giỏ hàng'},{kr:'월급',rom:'wolgeup',vi:'Lương tháng'},
+        {kr:'취업',rom:'chwieop',vi:'Tìm việc'},{kr:'세금',rom:'segeum',vi:'Thuế'},{kr:'환율',rom:'hwanyul',vi:'Tỷ giá'}
+      ]},
+      politics:{ name:'🏛️ 정치', words:[
+        {kr:'대통령',rom:'daetongnyeong',vi:'Tổng thống'},{kr:'국회',rom:'gukhoe',vi:'Quốc hội'},
+        {kr:'법무부',rom:'beommubu',vi:'Bộ Tư pháp'},{kr:'투표',rom:'tupyo',vi:'Bầu cử'},{kr:'후보',rom:'hubo',vi:'Ứng cử viên'},
+        {kr:'정당',rom:'jeongdang',vi:'Đảng phái'},{kr:'외교',rom:'oegyo',vi:'Ngoại giao'},
+        {kr:'조약',rom:'joyak',vi:'Hiệp ước'},{kr:'헌법',rom:'heonbeop',vi:'Hiến pháp'},{kr:'국민',rom:'gungmin',vi:'Người dân'}
+      ]},
+      science:{ name:'🔬 과학', words:[
+        {kr:'실험',rom:'silheom',vi:'Thí nghiệm'},{kr:'발명',rom:'balmyeong',vi:'Phát minh'},
+        {kr:'연구실',rom:'yeongusil',vi:'Phòng nghiên cứu'},{kr:'DNA',rom:'DNA',vi:'DNA'},{kr:'세포',rom:'sepo',vi:'Tế bào'},
+        {kr:'우주선',rom:'ujuseon',vi:'Tàu vũ trụ'},{kr:'화성',rom:'hwaseong',vi:'Sao Hỏa'},
+        {kr:'인공위성',rom:'ingongwiseong',vi:'Vệ tinh'},{kr:'로켓',rom:'roket',vi:'Tên lửa'},{kr:'이론',rom:'iron',vi:'Lý thuyết'}
+      ]},
+      art:{ name:'🎨 예술', words:[
+        {kr:'그림',rom:'geurim',vi:'Tranh'},{kr:'조각',rom:'jogak',vi:'Điêu khắc'},{kr:'색깔',rom:'saekkkal',vi:'Màu sắc'},
+        {kr:'연극',rom:'yeongeuk',vi:'Kịch'},{kr:'뮤지컬',rom:'myujikeol',vi:'Nhạc kịch'},{kr:'무용',rom:'muyong',vi:'Múa'},
+        {kr:'시',rom:'si',vi:'Thơ'},{kr:'소설',rom:'soseol',vi:'Tiểu thuyết'},{kr:'전시회',rom:'jeonsihoe',vi:'Triển lãm'},
+        {kr:'미술관',rom:'misulgwan',vi:'Bảo tàng mỹ thuật'}
+      ]},
+      history:{ name:'📜 역사', words:[
+        {kr:'전쟁',rom:'jeonjaeng',vi:'Chiến tranh'},{kr:'독립',rom:'dongnip',vi:'Độc lập'},
+        {kr:'혁명',rom:'hyeongmyeong',vi:'Cách mạng'},{kr:'고대',rom:'godae',vi:'Cổ đại'},{kr:'중세',rom:'jungse',vi:'Trung cổ'},
+        {kr:'근대',rom:'geundae',vi:'Cận đại'},{kr:'세종대왕',rom:'Sejongdaewang',vi:'Vua Sejong'},
+        {kr:'이순신',rom:'I Sunsin',vi:'Yi Sun-sin'},{kr:'유적지',rom:'yujeokji',vi:'Di tích'},{kr:'기록',rom:'girok',vi:'Ghi chép'}
+      ]},
+      religion:{ name:'🕊️ 종교', words:[
+        {kr:'기독교',rom:'gidokgyo',vi:'Cơ đốc giáo'},{kr:'불교',rom:'bulgyo',vi:'Phật giáo'},
+        {kr:'천주교',rom:'cheonjugyo',vi:'Công giáo'},{kr:'이슬람교',rom:'iseullamgyo',vi:'Hồi giáo'},
+        {kr:'교회',rom:'gyohoe',vi:'Nhà thờ'},{kr:'절',rom:'jeol',vi:'Chùa'},{kr:'모스크',rom:'moseukeu',vi:'Nhà thờ Hồi giáo'},
+        {kr:'기도하다',rom:'gidohada',vi:'Cầu nguyện'},{kr:'예배',rom:'yebae',vi:'Thờ phượng'},{kr:'성경',rom:'seonggyeong',vi:'Kinh thánh'}
+      ]},
+      animals:{ name:'🐾 동물', words:[
+        {kr:'강아지',rom:'gangaji',vi:'Cún'},{kr:'고양이',rom:'goyangi',vi:'Mèo'},{kr:'햄스터',rom:'haemseuteo',vi:'Hamster'},
+        {kr:'호랑이',rom:'horangi',vi:'Hổ'},{kr:'사자',rom:'saja',vi:'Sư tử'},{kr:'코끼리',rom:'kokkiri',vi:'Voi'},
+        {kr:'독수리',rom:'doksuri',vi:'Đại bàng'},{kr:'참새',rom:'chamsae',vi:'Chim sẻ'},{kr:'토끼',rom:'tokki',vi:'Thỏ'},
+        {kr:'기린',rom:'girin',vi:'Hươu cao cổ'}
+      ]},
+      plants:{ name:'🌿 식물', words:[
+        {kr:'장미',rom:'jangmi',vi:'Hoa hồng'},{kr:'해바라기',rom:'haebaragi',vi:'Hoa hướng dương'},
+        {kr:'튤립',rom:'tyullip',vi:'Tulip'},{kr:'소나무',rom:'sonamu',vi:'Cây thông'},{kr:'대나무',rom:'daenamu',vi:'Cây tre'},
+        {kr:'벚나무',rom:'beonnamu',vi:'Cây anh đào'},{kr:'사과',rom:'sagwa',vi:'Táo'},{kr:'포도',rom:'podo',vi:'Nho'},
+        {kr:'바나나',rom:'banana',vi:'Chuối'},{kr:'딸기',rom:'ttalgi',vi:'Dâu tây'}
+      ]},
+      space:{ name:'🚀 우주', words:[
+        {kr:'별',rom:'byeol',vi:'Ngôi sao'},{kr:'달',rom:'dal',vi:'Mặt trăng'},{kr:'태양',rom:'taeyang',vi:'Mặt trời'},
+        {kr:'지구',rom:'jigu',vi:'Trái đất'},{kr:'우주선',rom:'ujuseon',vi:'Tàu vũ trụ'},{kr:'우주인',rom:'ujuin',vi:'Phi hành gia'},
+        {kr:'로켓',rom:'roket',vi:'Tên lửa'},{kr:'일식',rom:'ilsik',vi:'Nhật thực'},{kr:'은하',rom:'eunha',vi:'Ngân hà'},
+        {kr:'행성',rom:'haengseong',vi:'Hành tinh'}
+      ]},
+      time:{ name:'⏰ 시간', words:[
+        {kr:'초',rom:'cho',vi:'Giây'},{kr:'분',rom:'bun',vi:'Phút'},{kr:'시간',rom:'sigan',vi:'Giờ'},
+        {kr:'일',rom:'il',vi:'Ngày'},{kr:'주',rom:'ju',vi:'Tuần'},{kr:'월',rom:'wol',vi:'Tháng'},{kr:'년',rom:'nyeon',vi:'Năm'},
+        {kr:'아침',rom:'achim',vi:'Buổi sáng'},{kr:'점심',rom:'jeomsim',vi:'Buổi trưa'},{kr:'저녁',rom:'jeonyeok',vi:'Buổi tối'},
+        {kr:'밤',rom:'bam',vi:'Đêm'},{kr:'주말',rom:'jumal',vi:'Cuối tuần'}
+      ]},
+      numbers:{ name:'🔢 숫자', words:[
+        {kr:'일',rom:'il',vi:'1'},{kr:'이',rom:'i',vi:'2'},{kr:'삼',rom:'sam',vi:'3'},{kr:'사',rom:'sa',vi:'4'},
+        {kr:'오',rom:'o',vi:'5'},{kr:'육',rom:'yuk',vi:'6'},{kr:'칠',rom:'chil',vi:'7'},{kr:'팔',rom:'pal',vi:'8'},
+        {kr:'구',rom:'gu',vi:'9'},{kr:'십',rom:'sip',vi:'10'},{kr:'백',rom:'baek',vi:'100'},{kr:'천',rom:'cheon',vi:'1000'}
+      ]},
+      colors:{ name:'🎨 색깔', words:[
+        {kr:'빨간색',rom:'ppalgansaek',vi:'Đỏ'},{kr:'파란색',rom:'paransaek',vi:'Xanh dương'},
+        {kr:'노란색',rom:'noransaek',vi:'Vàng'},{kr:'검은색',rom:'geomeunsaek',vi:'Đen'},{kr:'흰색',rom:'huinsaek',vi:'Trắng'},
+        {kr:'녹색',rom:'noksaek',vi:'Xanh lá'},{kr:'보라색',rom:'borasaek',vi:'Tím'},{kr:'주황색',rom:'juhwangsaek',vi:'Cam'},
+        {kr:'밝은색',rom:'balgeunsaek',vi:'Màu sáng'},{kr:'어두운색',rom:'eoduunsaek',vi:'Màu tối'},
+        {kr:'하늘색',rom:'haneulsaek',vi:'Xanh da trời'},{kr:'갈색',rom:'galsaek',vi:'Nâu'}
+      ]}
+    };
+
+    // 91 grammar structures
+    const grammarStructures = [
+      { id:1, title:'N + 은/는', explain:'Trợ từ chủ ngữ, nhấn mạnh vị ngữ.', examples:[
+        {tokens:[{t:'저는',type:'subject'},{t:'학생',type:'noun'},{t:'입니다',type:'verb'}],full:'저는 학생입니다'},
+        {tokens:[{t:'밥은',type:'subject'},{t:'맛있어요',type:'adjective'}],full:'밥은 맛있어요'}
+      ]},
+      { id:2, title:'N + 이/가', explain:'Tiểu từ chủ ngữ, nhấn mạnh chủ ngữ.', examples:[
+        {tokens:[{t:'제가',type:'subject'},{t:'학생',type:'noun'},{t:'입니다',type:'verb'}],full:'제가 학생입니다'},
+        {tokens:[{t:'이 집이',type:'subject'},{t:'크네요',type:'adjective'}],full:'이 집이 크네요'}
+      ]},
+      { id:3, title:'N + 을/를', explain:'Tân ngữ.', examples:[
+        {tokens:[{t:'저는',type:'subject'},{t:'밥을',type:'object'},{t:'먹어요',type:'verb'}],full:'저는 밥을 먹어요'}
+      ]},
+      { id:4, title:'N + 입니다', explain:'Đuôi kính ngữ "là".', examples:[
+        {tokens:[{t:'저는',type:'subject'},{t:'학생',type:'noun'},{t:'입니다',type:'verb'}],full:'저는 학생입니다'}
+      ]},
+      { id:5, title:'N + 입니까?', explain:'Nghi vấn kính ngữ.', examples:[
+        {tokens:[{t:'당신은',type:'subject'},{t:'학생',type:'noun'},{t:'입니까?',type:'verb'}],full:'당신은 학생입니까?'}
+      ]},
+      { id:6, title:'N + 예요/이에요', explain:'Đuôi lịch sự "là".', examples:[
+        {tokens:[{t:'저는',type:'subject'},{t:'학생',type:'noun'},{t:'이에요',type:'verb'}],full:'저는 학생이에요'}
+      ]},
+      { id:7, title:'N + 이/가 아닙니다', explain:'Không phải là (kính ngữ).', examples:[
+        {tokens:[{t:'저는',type:'subject'},{t:'베트남 사람',type:'noun'},{t:'이 아닙니다',type:'verb'}],full:'저는 베트남 사람이 아닙니다'}
+      ]},
+      { id:8, title:'N + 이/가 아니에요', explain:'Không phải là (lịch sự).', examples:[
+        {tokens:[{t:'이것은',type:'subject'},{t:'책',type:'noun'},{t:'이 아니에요',type:'verb'}],full:'이것은 책이 아니에요'}
+      ]},
+      { id:9, title:'N + 하고/와/과', explain:'Và, với.', examples:[
+        {tokens:[{t:'밥',type:'noun'},{t:'하고',type:'particle'},{t:'고기',type:'noun'},{t:'를 먹어요',type:'verb'}],full:'밥하고 고기를 먹어요'}
+      ]},
+      { id:10, title:'V/A + ㅂ니다/습니다', explain:'Kính ngữ.', examples:[
+        {tokens:[{t:'먹습니다',type:'verb'}],full:'먹습니다'}
+      ]},
+      { id:11, title:'V/A + 아/어/여요', explain:'Lịch sự.', examples:[
+        {tokens:[{t:'먹어요',type:'verb'}],full:'먹어요'}
+      ]},
+      { id:12, title:'N + 에서', explain:'Ở, tại, từ.', examples:[
+        {tokens:[{t:'집에서',type:'adverb'},{t:'먹어요',type:'verb'}],full:'집에서 먹어요'}
+      ]},
+      { id:13, title:'N + 에', explain:'Đến, ở, vào.', examples:[
+        {tokens:[{t:'학교에',type:'adverb'},{t:'가요',type:'verb'}],full:'학교에 가요'}
+      ]},
+      { id:14, title:'안 + V/A', explain:'Không.', examples:[
+        {tokens:[{t:'안',type:'adverb'},{t:'가요',type:'verb'}],full:'안 가요'}
+      ]},
+      { id:15, title:'V/A + 지 않다', explain:'Không (dài).', examples:[
+        {tokens:[{t:'사지',type:'verb'},{t:'않아요',type:'verb'}],full:'사지 않아요'}
+      ]},
+      { id:16, title:'N + 이/가 있다/없다', explain:'Có/không có.', examples:[
+        {tokens:[{t:'돈이',type:'noun'},{t:'있어요',type:'verb'}],full:'돈이 있어요'}
+      ]},
+      { id:17, title:'N + 에 있다/없다', explain:'Ở/không ở.', examples:[
+        {tokens:[{t:'집에',type:'adverb'},{t:'있어요',type:'verb'}],full:'집에 있어요'}
+      ]},
+      { id:18, title:'Vị trí + 에 있다', explain:'앞, 뒤, 위...', examples:[
+        {tokens:[{t:'책상 위에',type:'adverb'},{t:'있어요',type:'verb'}],full:'책상 위에 있어요'}
+      ]},
+      { id:19, title:'V/A + 고', explain:'Và.', examples:[
+        {tokens:[{t:'맛있고',type:'adjective'},{t:'매워요',type:'adjective'}],full:'맛있고 매워요'}
+      ]},
+      { id:20, title:'V/A + 았/었/였다', explain:'Đã (quá khứ).', examples:[
+        {tokens:[{t:'갔어요',type:'verb'}],full:'갔어요'}
+      ]},
+      { id:21, title:'V + 으세요/세요', explain:'Hãy.', examples:[
+        {tokens:[{t:'공부하세요',type:'verb'}],full:'공부하세요'}
+      ]},
+      { id:22, title:'V + 읍/ㅂ시다', explain:'Nha (rủ rê).', examples:[
+        {tokens:[{t:'갑시다',type:'verb'}],full:'갑시다'}
+      ]},
+      { id:23, title:'N + 도', explain:'Cũng.', examples:[
+        {tokens:[{t:'저도',type:'subject'},{t:'공부해요',type:'verb'}],full:'저도 공부해요'}
+      ]},
+      { id:24, title:'N + 만', explain:'Chỉ.', examples:[
+        {tokens:[{t:'화 씨만',type:'subject'},{t:'입니다',type:'verb'}],full:'화 씨만입니다'}
+      ]},
+      { id:25, title:'V/A + 지만', explain:'Nhưng.', examples:[
+        {tokens:[{t:'어렵지만',type:'adjective'},{t:'재미있어요',type:'adjective'}],full:'어렵지만 재미있어요'}
+      ]},
+      { id:26, title:'V/A + 을/ㄹ까요?', explain:'Nha?/Nhé?', examples:[
+        {tokens:[{t:'볼까요?',type:'verb'}],full:'볼까요?'}
+      ]},
+      { id:27, title:'V/A + 네요', explain:'Cảm thán.', examples:[
+        {tokens:[{t:'덥네요',type:'adjective'}],full:'덥네요'}
+      ]},
+      { id:28, title:'V/A + (으)시다', explain:'Kính ngữ.', examples:[
+        {tokens:[{t:'읽으셨어요',type:'verb'}],full:'읽으셨어요'}
+      ]},
+      { id:29, title:'N 부터 ~ N 까지', explain:'Từ ~ đến (thời gian).', examples:[
+        {tokens:[{t:'월요일부터',type:'adverb'},{t:'금요일까지',type:'adverb'}],full:'월요일부터 금요일까지'}
+      ]},
+      { id:30, title:'N 에서 ~ N 까지', explain:'Từ ~ đến (địa điểm).', examples:[
+        {tokens:[{t:'집에서',type:'adverb'},{t:'학교까지',type:'adverb'}],full:'집에서 학교까지'}
+      ]},
+      { id:31, title:'V/A + 아/어/여서', explain:'Rồi, vì...nên.', examples:[
+        {tokens:[{t:'와서',type:'verb'},{t:'못 가요',type:'verb'}],full:'비가 와서 못 가요'}
+      ]},
+      { id:32, title:'V/A + 을/ㄹ 거예요', explain:'Sẽ / chắc là.', examples:[
+        {tokens:[{t:'결혼할 거예요',type:'verb'}],full:'결혼할 거예요'}
+      ]},
+      { id:33, title:'V/A + 겠다', explain:'Sẽ (quyết tâm).', examples:[
+        {tokens:[{t:'공부하겠습니다',type:'verb'}],full:'공부하겠습니다'}
+      ]},
+      { id:34, title:'V + 지 말다', explain:'Đừng.', examples:[
+        {tokens:[{t:'보지',type:'verb'},{t:'말아요',type:'verb'}],full:'보지 말아요'}
+      ]},
+      { id:35, title:'V + 아/어야 되다', explain:'Phải.', examples:[
+        {tokens:[{t:'공부해야 돼요',type:'verb'}],full:'공부해야 돼요'}
+      ]},
+      { id:36, title:'V/A + 지요?', explain:'Nhỉ?', examples:[
+        {tokens:[{t:'좋지요?',type:'adjective'}],full:'좋지요?'}
+      ]},
+      { id:37, title:'V + 고 있다', explain:'Đang.', examples:[
+        {tokens:[{t:'하고 있어요',type:'verb'}],full:'하고 있어요'}
+      ]},
+      { id:38, title:'V + 고 싶다', explain:'Muốn.', examples:[
+        {tokens:[{t:'사고 싶어요',type:'verb'}],full:'사고 싶어요'}
+      ]},
+      { id:39, title:'못 + V', explain:'Không được.', examples:[
+        {tokens:[{t:'못 가요',type:'verb'}],full:'못 가요'}
+      ]},
+      { id:40, title:'V + 지 못하다', explain:'Không được (dài).', examples:[
+        {tokens:[{t:'치지 못해요',type:'verb'}],full:'치지 못해요'}
+      ]},
+      { id:41, title:'V/A + (으)면', explain:'Nếu... thì.', examples:[
+        {tokens:[{t:'많으면',type:'adjective'},{t:'살 거예요',type:'verb'}],full:'많으면 살 거예요'}
+      ]},
+      { id:42, title:'V + (으)려고 하다', explain:'Định.', examples:[
+        {tokens:[{t:'가려고 해요',type:'verb'}],full:'가려고 해요'}
+      ]},
+      { id:43, title:'V + 아/어/여 주다', explain:'Làm cho.', examples:[
+        {tokens:[{t:'전화해 줘요',type:'verb'}],full:'전화해 줘요'}
+      ]},
+      { id:44, title:'N + (으)로', explain:'Bằng, đến.', examples:[
+        {tokens:[{t:'인터넷으로',type:'adverb'}],full:'인터넷으로'}
+      ]},
+      { id:45, title:'N + 에게/한테/께', explain:'Đến, cho.', examples:[
+        {tokens:[{t:'친구에게',type:'adverb'}],full:'친구에게'}
+      ]},
+      { id:46, title:'V + 아/어/여 보다', explain:'Từng / thử.', examples:[
+        {tokens:[{t:'가 봤어요',type:'verb'}],full:'가 봤어요'}
+      ]},
+      { id:47, title:'V + 는 + N', explain:'Định ngữ động từ.', examples:[
+        {tokens:[{t:'가는',type:'adjective'},{t:'여자',type:'noun'}],full:'가는 여자'}
+      ]},
+      { id:48, title:'A + 은/ㄴ + N', explain:'Định ngữ tính từ.', examples:[
+        {tokens:[{t:'예쁜',type:'adjective'},{t:'여자',type:'noun'}],full:'예쁜 여자'}
+      ]},
+      { id:49, title:'V + 을/ㄹ 수 있다', explain:'Có thể.', examples:[
+        {tokens:[{t:'할 수 있어요',type:'verb'}],full:'할 수 있어요'}
+      ]},
+      { id:50, title:'V + 을/ㄹ 수 없다', explain:'Không thể.', examples:[
+        {tokens:[{t:'할 수 없어요',type:'verb'}],full:'할 수 없어요'}
+      ]},
+      { id:51, title:'V + (으)려고', explain:'Để.', examples:[
+        {tokens:[{t:'선물하려고',type:'verb'},{t:'만들어요',type:'verb'}],full:'선물하려고 만들어요'}
+      ]},
+      { id:52, title:'V + 을/ㄹ 게요', explain:'Sẽ, liền.', examples:[
+        {tokens:[{t:'잘게요',type:'verb'}],full:'잘게요'}
+      ]},
+      { id:53, title:'V + (으)면서', explain:'Vừa... vừa.', examples:[
+        {tokens:[{t:'하면서',type:'verb'},{t:'들어요',type:'verb'}],full:'하면서 들어요'}
+      ]},
+      { id:54, title:'N + (이)라고 하다', explain:'Được gọi là.', examples:[
+        {tokens:[{t:'김태연',type:'noun'},{t:'이라고 합니다',type:'verb'}],full:'김태연이라고 합니다'}
+      ]},
+      { id:55, title:'V/A + 거나', explain:'Hoặc.', examples:[
+        {tokens:[{t:'가거나',type:'verb'},{t:'볼까요?',type:'verb'}],full:'가거나 볼까요?'}
+      ]},
+      { id:56, title:'N + (이)나', explain:'Hoặc (danh từ).', examples:[
+        {tokens:[{t:'밥이나',type:'noun'},{t:'빵',type:'noun'}],full:'밥이나 빵'}
+      ]},
+      { id:57, title:'V + 을/ㄹ 줄 알다', explain:'Biết làm.', examples:[
+        {tokens:[{t:'수영할 줄 알아요',type:'verb'}],full:'수영할 줄 알아요'}
+      ]},
+      { id:58, title:'V + 는 것', explain:'Việc...', examples:[
+        {tokens:[{t:'보는 것',type:'noun'}],full:'보는 것'}
+      ]},
+      { id:59, title:'N + 동안', explain:'Trong vòng.', examples:[
+        {tokens:[{t:'3개월 동안',type:'adverb'}],full:'3개월 동안'}
+      ]},
+      { id:60, title:'V + 는데', explain:'Nhưng/mà.', examples:[
+        {tokens:[{t:'공부하는데',type:'verb'},{t:'어려워요',type:'adjective'}],full:'공부하는데 어려워요'}
+      ]},
+      { id:61, title:'A + 은/ㄴ데', explain:'Nhưng (tính từ).', examples:[
+        {tokens:[{t:'추운데',type:'adjective'}],full:'추운데'}
+      ]},
+      { id:62, title:'N + 인데', explain:'Là... nhưng.', examples:[
+        {tokens:[{t:'사람인데',type:'noun'}],full:'사람인데'}
+      ]},
+      { id:63, title:'V/A + 것 같다', explain:'Chắc là.', examples:[
+        {tokens:[{t:'비싼 것 같아요',type:'adjective'}],full:'비싼 것 같아요'}
+      ]},
+      { id:64, title:'N + 보다', explain:'So với.', examples:[
+        {tokens:[{t:'동생보다',type:'adverb'},{t:'예뻐요',type:'adjective'}],full:'동생보다 예뻐요'}
+      ]},
+      { id:65, title:'A/V + 았/었으면 좋겠다', explain:'Ước gì.', examples:[
+        {tokens:[{t:'많았으면 좋겠어요',type:'adjective'}],full:'많았으면 좋겠어요'}
+      ]},
+      { id:66, title:'A/V + (으)니까', explain:'Vì... nên.', examples:[
+        {tokens:[{t:'심심하니까',type:'adjective'},{t:'볼까요?',type:'verb'}],full:'심심하니까 볼까요?'}
+      ]},
+      { id:67, title:'V + 고 나서', explain:'Rồi.', examples:[
+        {tokens:[{t:'생각해 보고 나서',type:'verb'}],full:'생각해 보고 나서'}
+      ]},
+      { id:68, title:'N + (이)라서', explain:'Vì là... nên.', examples:[
+        {tokens:[{t:'퇴근 시간이라서',type:'adverb'}],full:'퇴근 시간이라서'}
+      ]},
+      { id:69, title:'V + (으)면 되다', explain:'Nếu... là được.', examples:[
+        {tokens:[{t:'가면 돼요',type:'verb'}],full:'가면 돼요'}
+      ]},
+      { id:70, title:'V + (으)면 안 되다', explain:'Không được.', examples:[
+        {tokens:[{t:'자면 안 돼요',type:'verb'}],full:'자면 안 돼요'}
+      ]},
+      { id:71, title:'V/A + 는지 알다', explain:'Biết.', examples:[
+        {tokens:[{t:'하는지 알아요',type:'verb'}],full:'하는지 알아요'}
+      ]},
+      { id:72, title:'V + (으)려면', explain:'Nếu muốn... thì.', examples:[
+        {tokens:[{t:'유학가려면',type:'verb'},{t:'공부해야 돼요',type:'verb'}],full:'유학가려면 공부해야 돼요'}
+      ]},
+      { id:73, title:'V + 다가', explain:'Đang... thì.', examples:[
+        {tokens:[{t:'하다가',type:'verb'},{t:'받았어요',type:'verb'}],full:'하다가 받았어요'}
+      ]},
+      { id:74, title:'N 때문에 / V + 기 때문에', explain:'Bởi vì.', examples:[
+        {tokens:[{t:'비 때문에',type:'adverb'}],full:'비 때문에'}
+      ]},
+      { id:75, title:'V + 아/어/여 버리다', explain:'... mất rồi.', examples:[
+        {tokens:[{t:'잊어 버렸어요',type:'verb'}],full:'잊어 버렸어요'}
+      ]},
+      { id:76, title:'V + 을/ㄹ 때', explain:'Khi.', examples:[
+        {tokens:[{t:'공부할 때',type:'adverb'}],full:'공부할 때'}
+      ]},
+      { id:77, title:'V/A + 는데요/은데요', explain:'Nhấn mạnh cuối câu.', examples:[
+        {tokens:[{t:'추운데요',type:'adjective'}],full:'추운데요'}
+      ]},
+      { id:78, title:'V + 는 중이다', explain:'Đang.', examples:[
+        {tokens:[{t:'운전하는 중입니다',type:'verb'}],full:'운전하는 중입니다'}
+      ]},
+      { id:79, title:'A + 은/ㄴ가요?', explain:'Đuôi nhẹ nhàng.', examples:[
+        {tokens:[{t:'예쁜가요?',type:'adjective'}],full:'예쁜가요?'}
+      ]},
+      { id:80, title:'V + 나요?', explain:'Hỏi nhẹ nhàng.', examples:[
+        {tokens:[{t:'먹나요?',type:'verb'}],full:'먹나요?'}
+      ]},
+      { id:81, title:'N + 인가요?', explain:'Có phải là...', examples:[
+        {tokens:[{t:'학생인가요?',type:'noun'}],full:'학생인가요?'}
+      ]},
+      { id:82, title:'N + 밖에', explain:'Chỉ.', examples:[
+        {tokens:[{t:'당신 밖에 없어요',type:'noun'}],full:'당신 밖에 없어요'}
+      ]},
+      { id:83, title:'V + 게 되다', explain:'Được / trở nên.', examples:[
+        {tokens:[{t:'만나게 됐어요',type:'verb'}],full:'만나게 됐어요'}
+      ]},
+      { id:84, title:'V + (으)면 큰 일이다', explain:'Nếu... thì lớn chuyện.', examples:[
+        {tokens:[{t:'하면 큰 일이다',type:'verb'}],full:'하면 큰 일이다'}
+      ]},
+      { id:85, title:'V + 기로 하다', explain:'Quyết định.', examples:[
+        {tokens:[{t:'유학가기로 했어요',type:'verb'}],full:'유학가기로 했어요'}
+      ]},
+      { id:86, title:'V + 은/ㄴ 적이 있다/없다', explain:'Đã từng.', examples:[
+        {tokens:[{t:'간 적이 없어요',type:'verb'}],full:'간 적이 없어요'}
+      ]},
+      { id:87, title:'V + 아/어/여 있다', explain:'Đang (trạng thái).', examples:[
+        {tokens:[{t:'앉아 있어요',type:'verb'}],full:'앉아 있어요'}
+      ]},
+      { id:88, title:'N + 에게 어울리다', explain:'Hợp với.', examples:[
+        {tokens:[{t:'어울려요',type:'verb'}],full:'어울려요'}
+      ]},
+      { id:89, title:'V + ㄴ/는다', explain:'Đuôi văn bản.', examples:[
+        {tokens:[{t:'만난다',type:'verb'}],full:'만난다'}
+      ]},
+      { id:90, title:'A + 다', explain:'Đuôi văn bản.', examples:[
+        {tokens:[{t:'복잡하다',type:'adjective'}],full:'복잡하다'}
+      ]},
+      { id:91, title:'N + 이다', explain:'Đuôi văn bản.', examples:[
+        {tokens:[{t:'남친이다',type:'noun'}],full:'남친이다'}
+      ]}
+    ];
+
+    // ========== HELPERS ==========
+    function saveState(){ localStorage.setItem('darkMode',state.darkMode); localStorage.setItem('soundOn',state.soundOn); localStorage.setItem('streak',state.streak); localStorage.setItem('lastStudyDate',state.lastStudyDate); }
+    function applyTheme(){
+      document.body.classList.toggle('dark-mode', state.darkMode);
+      document.getElementById('darkToggle').textContent = state.darkMode ? '☀️' : '🌙';
+    }
+    function playBeep(f=800,d=80){
+      if(!state.soundOn) return;
+      try{
+        const ctx=new(window.AudioContext||window.webkitAudioContext)();
+        const o=ctx.createOscillator(),g=ctx.createGain();
+        o.frequency.value=f; g.gain.setValueAtTime(0.08,ctx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+d/1000);
+        o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+d/1000);
+      }catch(e){}
+    }
+    function updateStreak(){
+      const today=new Date().toDateString();
+      if(state.lastStudyDate!==today){
+        const y=new Date(Date.now()-86400000).toDateString();
+        state.streak = state.lastStudyDate===y ? state.streak+1 : 1;
+        state.lastStudyDate=today; saveState();
+        if(state.streak%7===0) spawnConfetti();
+      }
+      document.getElementById('streakCount').textContent=state.streak;
+    }
+    function spawnConfetti(){
+      const c=document.getElementById('confetti-canvas'),ctx=c.getContext('2d');
+      c.width=innerWidth; c.height=innerHeight;
+      const p=[],colors=['#e84393','#f78fb3','#f6e58d','#ffdd59','#55efc4','#fdcb6e'];
+      for(let i=0;i<100;i++) p.push({x:Math.random()*c.width, y:Math.random()*c.height-c.height, w:6+Math.random()*8, h:4+Math.random()*5, color:colors[Math.floor(Math.random()*colors.length)], vx:(Math.random()-0.5)*5, vy:Math.random()*3+2, rot:Math.random()*360, rv:(Math.random()-0.5)*6, op:1});
+      let f=0;
+      function draw(){
+        ctx.clearRect(0,0,c.width,c.height);
+        p.forEach(p=>{ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot*Math.PI/180);ctx.globalAlpha=p.op;ctx.fillStyle=p.color;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();p.x+=p.vx;p.y+=p.vy;p.rot+=p.rv;p.vy+=0.05;p.op-=0.004;});
+        f++; if(f<140 && p.some(p=>p.op>0)) requestAnimationFrame(draw); else ctx.clearRect(0,0,c.width,c.height);
+      } draw();
+    }
+
+    // VOCAB
+    function renderTopics(){
+      const c=document.getElementById('topicSelector'); c.innerHTML='';
+      Object.entries(vocabularyTopics).forEach(([k,t])=>{
+        const chip=document.createElement('span');
+        chip.className='topic-chip'+(state.currentTopic===k?' active':'');
+        chip.textContent=t.name; chip.onclick=()=>{ state.currentTopic=k; state.currentCardIndex=0; renderTopics(); renderFlashcard(); playBeep(600,50); };
+        c.appendChild(chip);
+      });
+    }
+    function renderFlashcard(){
+      const t=vocabularyTopics[state.currentTopic], w=t.words[state.currentCardIndex];
+      document.getElementById('fcFront').textContent=w.kr;
+      document.getElementById('fcBack').querySelector('.romaja').textContent=w.rom;
+      document.getElementById('fcBack').querySelector('.meaning').textContent=w.vi;
+      document.getElementById('cardProgress').textContent=`${state.currentCardIndex+1}/${t.words.length}`;
+      document.getElementById('flashcard').classList.remove('flipped');
+    }
+    function flipCard(){ document.getElementById('flashcard').classList.toggle('flipped'); playBeep(800,40); updateStreak(); }
+    function nextCard(){ const t=vocabularyTopics[state.currentTopic]; state.currentCardIndex=(state.currentCardIndex+1)%t.words.length; renderFlashcard(); playBeep(500,40); }
+    function prevCard(){ const t=vocabularyTopics[state.currentTopic]; state.currentCardIndex=(state.currentCardIndex-1+t.words.length)%t.words.length; renderFlashcard(); }
+
+    // GRAMMAR
+    function renderGrammarSelector(){
+      const c=document.getElementById('grammarSelector'); c.innerHTML='';
+      grammarStructures.forEach((gs,i)=>{
+        const chip=document.createElement('span');
+        chip.className='topic-chip'+(state.currentGrammarIndex===i?' active':'');
+        chip.textContent=gs.title.substring(0,16)+'…'; chip.title=gs.title;
+        chip.onclick=()=>{ state.currentGrammarIndex=i; renderGrammarSelector(); renderGrammarExample(); playBeep(600,40); };
+        c.appendChild(chip);
+      });
+    }
+    function renderGrammarExample(){
+      const gs=grammarStructures[state.currentGrammarIndex];
+      const ex=gs.examples[Math.floor(Math.random()*gs.examples.length)];
+      document.getElementById('grammarExplanation').textContent='📝 '+gs.title+' — '+gs.explain;
+      const div=document.getElementById('grammarSentence');
+      div.innerHTML=ex.tokens.map(t=>`<span class="token token-${t.type}">${t.t}</span>`).join(' ')+`<div style="font-size:0.65rem;margin-top:6px;">${ex.full}</div>`;
+      document.getElementById('grammarLegend').innerHTML=['subject','verb','object','adjective','adverb','noun','particle'].map(t=>`<span><span class="legend-dot" style="background:var(--${t})"></span> ${t}</span>`).join(' ');
+    }
+
+    // BOT
+    function analyzeSentence(input){
+      const tokens=[]; const raw=input.trim().split(/\s+/);
+      raw.forEach(tok=>{
+        let type='noun'; if(/은$|는$|이$|가$/.test(tok)) type='subject'; else if(/을$|를$/.test(tok)) type='object';
+        else if(/다$|요$|ㅂ니다$|습니다$|세요$/.test(tok)) type='verb'; else if(/게$|에서$|에$|으로$/.test(tok)) type='adverb';
+        tokens.push({t:tok,type});
+      });
+      return {tokens, original:input.trim()};
+    }
+    function sendToBot(){
+      const input=document.getElementById('botInput'); const text=input.value.trim(); if(!text) return;
+      updateStreak(); const chat=document.getElementById('chatArea');
+      const uB=document.createElement('div'); uB.className='chat-bubble chat-user'; uB.textContent=text; chat.appendChild(uB);
+      const tB=document.createElement('div'); tB.className='chat-bubble chat-bot'; tB.innerHTML='<div class="typing-indicator"><span></span><span></span><span></span></div>'; chat.appendChild(tB);
+      input.value=''; chat.scrollTop=chat.scrollHeight;
+      setTimeout(()=>{
+        tB.remove(); const analysis=analyzeSentence(text);
+        const high=analysis.tokens.map(t=>`<span class="token token-${t.type}">${t.t}</span>`).join(' ');
+        const resp=document.createElement('div'); resp.className='chat-bubble chat-bot';
+        resp.innerHTML=`📌 ${high}<br>🔍 Bot đã phân tích! Hãy kiểm tra màu sắc nhé.`;
+        chat.appendChild(resp); chat.scrollTop=chat.scrollHeight;
+      },700);
+    }
+
+    // MINI GAME
+    function generateQuiz(){
+      state.quizAnswered=false; const all=Object.values(vocabularyTopics).flatMap(t=>t.words);
+      const correct=all[Math.floor(Math.random()*all.length)];
+      document.getElementById('quizWord').textContent=correct.kr;
+      document.getElementById('quizFeedback').textContent='';
+      const opts=[correct]; while(opts.length<4){ const r=all[Math.floor(Math.random()*all.length)]; if(!opts.find(o=>o.vi===r.vi)) opts.push(r); }
+      opts.sort(()=>Math.random()-0.5);
+      const container=document.getElementById('quizOptions'); container.innerHTML='';
+      opts.forEach(o=>{
+        const btn=document.createElement('button'); btn.className='quiz-option'; btn.textContent=o.vi;
+        btn.onclick=()=>{
+          if(state.quizAnswered) return; state.quizAnswered=true;
+          if(o.vi===correct.vi){ btn.classList.add('correct'); state.quizScore+=10; document.getElementById('quizFeedback').textContent='✅ Đúng!'; playBeep(1000,80); spawnConfetti(); }
+          else { btn.classList.add('wrong'); document.getElementById('quizFeedback').textContent=`❌ Sai! Đáp án: ${correct.vi}`; }
+          document.getElementById('quizScore').textContent=state.quizScore; updateStreak();
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    // INIT
+    function init(){
+      applyTheme(); updateStreak();
+      document.getElementById('soundToggle').textContent=state.soundOn?'🔊':'🔇';
+      renderTopics(); renderFlashcard(); renderGrammarSelector(); renderGrammarExample(); generateQuiz();
+      document.getElementById('darkToggle').onclick=()=>{ state.darkMode=!state.darkMode; applyTheme(); saveState(); };
+      document.getElementById('soundToggle').onclick=function(){ state.soundOn=!state.soundOn; this.textContent=state.soundOn?'🔊':'🔇'; saveState(); };
+      document.querySelectorAll('.tab-btn').forEach(b=>b.onclick=()=>{
+        document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(x=>x.classList.remove('active'));
+        b.classList.add('active'); document.getElementById('tab-'+b.dataset.tab).classList.add('active');
+        updateStreak();
+      });
+      document.getElementById('flashcard').onclick=flipCard;
+      document.getElementById('btnFlip').onclick=(e)=>{e.stopPropagation(); flipCard();};
+      document.getElementById('btnNext').onclick=(e)=>{e.stopPropagation(); nextCard();};
+      document.getElementById('btnPrev').onclick=(e)=>{e.stopPropagation(); prevCard();};
+      document.getElementById('btnMoreGrammar').onclick=renderGrammarExample;
+      document.getElementById('btnNextQuiz').onclick=generateQuiz;
+      document.getElementById('streakBadge').onclick=()=>alert(`🔥 Chuỗi ${state.streak} ngày!`);
+    }
+    document.addEventListener('DOMContentLoaded', init);
+  })();
+</script>
+</body>
+</html>
